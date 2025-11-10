@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Load cart from localStorage
+    
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartCount();
 
-    // Login Modal
+   
     const loginBtn = document.getElementById('login-btn');
     const loginModal = document.getElementById('login-modal');
     const loginForm = document.getElementById('login-form');
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cartModal.style.display = 'block';
     });
 
-    // Add to Cart
+    
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Close Modals
+ 
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             loginModal.style.display = 'none';
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === cartModal) cartModal.style.display = 'none';
     });
 
-    // Checkout (placeholder)
+
     checkoutBtn.addEventListener('click', () => {
         alert('Checkout not implemented yet. Total: ' + calculateTotal());
     });

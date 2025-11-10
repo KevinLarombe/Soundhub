@@ -4,11 +4,12 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    background-image: url('bg.jpg');
 }
 
 header {
-    background-color: #6a0dad; /* Purple */
-    color: white;
+    background-color: #6a0dad; 
+    color: rgb(0, 0, 0);
     padding: 1rem;
     text-align: center;
     position: relative;
@@ -95,7 +96,7 @@ section {
 }
 
 .add-to-cart {
-    background-color: #6a0dad; /* Purple */
+    background-color: #6a0dad; 
     color: white;
     border: none;
     padding: 0.5rem;
@@ -109,7 +110,7 @@ section {
 }
 
 footer {
-    background-color: #6a0dad; /* Purple */
+    background-color: #6a0dad; 
     color: white;
     text-align: center;
     padding: 1rem;
@@ -118,7 +119,7 @@ footer {
     bottom: 0;
 }
 
-/* Modal Styles */
+
 .modal {
     display: none;
     position: fixed;
