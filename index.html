@@ -1,264 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZCVKJ Soundhub - Home</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-   
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to ZCVKJ Soundhub</title>
+     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+       
+    </style>
 </head>
 <body>
-  <header>
-    <h1>ZCVKJ Soundhub</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cart.html">Cart</a></li>
-        <li><a href="checkout.html">Checkout</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-        <li><a href="login.html">Login </a></li>   
-      </ul>
 
-      <img src="ZCVKJ LOGOG.png" alt="ZCVKJ Logo" class="header-logo">
-    </nav>
-  </header>
-
-  <section id="home">
-    <h2>Welcome to ZCVKJ Soundhub</h2>
-    <p>Discover the best Soundtech for immersive sound experiences.</p>
-  </section>
-
-  <section id="Headphones">
-    <h2>Our Headphones</h2> 
-    <div class="product-list">
-      <div class="product" data-name="Wireless Headphones" data-price="199.99">
-        <img src="Headphone1.jpg" alt="Wireless Headphones">
-        <h3>Wireless Headphones</h3>
-        <p>₱499.99</p>
-        <div class="quantity-controls">
-          <button class="decrease">−</button>
-          <span class="quantity">1</span>
-          <button class="increase">+</button>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-
-      <div class="product" data-name="Wired Headphones - Black" data-price="129.99">
-        <img src="Headphone2.jpg" alt="Wired Headphones - Black">
-        <h3>Wired Headphones - Black</h3>
-        <p>₱399.99</p>
-        <div class="quantity-controls">
-          <button class="decrease">−</button>
-          <span class="quantity">1</span>
-          <button class="increase">+</button>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-
-<div class="product" data-name="Gaming Headphones - White" data-price="149.99">
-        <img src="Headphone3.jpg" alt="Gaming Headphones - White">
-        <h3>Gaming Headphones - White</h3>
-        <p>₱599.99</p>
-        <div class="quantity-controls">
-          <button class="decrease">−</button>
-          <span class="quantity">1</span>
-          <button class="increase">+</button>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-
-   
-<div class="product" data-name="Wired Headphones - White" data-price="129.99">
-        <img src="Headphone4.jpg" alt="Wired Headphones - White">
-        <h3>Wired Headphones - White</h3>
-        <p>₱399.99</p>
-        <div class="quantity-controls">
-          <button class="decrease">−</button>
-          <span class="quantity">1</span>
-          <button class="increase">+</button>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-
-
-<section id="Airpods">
-  <h2>Our Airpods</h2>
-  <div class="product-list">
-    <div class="product" data-name="Airpods Pro" data-price="199.99">
-      <img src="Airpods 1.jpg" alt="Airpods Pro">
-      <h3>Airpods Pro</h3>
-      <p>₱899.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
+    <div id="loader">
+        <div class="spinner"></div>
+        Diving into the soundscape...
     </div>
 
-    <div class="product" data-name="Airpods 2nd Gen" data-price="129.99">
-      <img src="Airpods 2.jpg" alt="Airpods 2nd Gen">
-      <h3>Airpods 2nd Gen</h3>
-      <p>₱999.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
+    <div class="logo-container">
+        <div class="logo" id="welcomeBtn">ZCVKJ Soundhub</div>
+        <div class="slogan">The rhythm starts now.</div>
     </div>
 
-    <div class="product" data-name="Airpods 3rd Gen" data-price="139.99">
-      <img src="Airpods 3.jpg" alt="Airpods 3rd Gen">
-      <h3>Airpods 3rd Gen</h3>
-      <p>1,299.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
+    <script>
+        const welcomeBtn = document.getElementById("welcomeBtn");
+        const loader = document.getElementById("loader");
 
-    <div class="product" data-name="Airpods 3rd Gen" data-price="149.99">
-      <img src="Airpods 4.jpg" alt="Airpods 3rd Gen">
-      <h3>Airpods 3rd Gen</h3>
-      <p>₱1,399.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
+        welcomeBtn.addEventListener("click", () => {
+            
+            loader.style.opacity = "0";
+            loader.style.display = "flex";
 
-
- <section id="Headsets">
-  <h2>Our Wired Headsets</h2>
-  <div class="product-list">
-    <div class="product" data-name="Wired Headset - White" data-price="199.99">
-      <img src="Headset 1.jpg" alt="Wired Headset - White">
-      <h3>Wired Headset - White</h3>
-      <p>₱199.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-    
-    <div class="product" data-name="Wired Headset 2nd Gen - White" data-price="129.99">
-      <img src="Headset 2.jpg" alt="Wired Headset 2nd Gen">
-      <h3>Wired Headset 2nd Gen</h3>
-      <p>₱399.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-    <div class="product" data-name="Wired Headset - Black" data-price="139.99">
-      <img src="Headset 3.jpg" alt="Wired Headset - Black">
-      <h3>Wired Headset - Black</h3>
-      <p>₱199.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-    <div class="product" data-name="Wired Headset 2nd Gen - Black" data-price="149.99">
-      <img src="Headset 4.jpg" alt="Wired Headset 2nd Gen - Black">
-      <h3>Wired Headset 2nd Gen - Black</h3>
-      <p>₱399.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-     <section id="Speakers">
-  <h2>Our Speakers</h2>
-  <div class="product-list">
-    <div class="product" data-name="Computer Speaker - Black" data-price="199.99">
-      <img src="Speaker 1.jpg" alt="Computer Speaker - Black">
-      <h3>Computer Speaker - Black</h3>
-      <p>₱899.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-    
-    <div class="product" data-name="Mini Computer Speakers - Black" data-price="129.99">
-      <img src="Speaker 2.jpg" alt="Mini Computer Speakers - Black">
-      <h3>Mini Computer Speakers - Black</h3>
-      <p>₱399.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-    <div class="product" data-name="Mini Speaker" data-price="139.99">
-      <img src="Speaker 3.jpg" alt="Mini Speaker">
-      <h3>Mini Speaker</h3>
-      <p>₱499.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-    <div class="product" data-name="Mini Speaker 2nd Gen" data-price="149.99">
-      <img src="Speaker 4.jpg" alt="Mini Speaker 2nd Gen">
-      <h3>Mini Speaker 2nd Gen</h3>
-      <p>₱699.99</p>
-      <div class="quantity-controls">
-        <button class="decrease">−</button>
-        <span class="quantity">1</span>
-        <button class="increase">+</button>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-
-    <!-- Add more products in the same way -->
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div id="toast" class="toast"></div>
-  <script src="script.js"></script>
+           
+            setTimeout(() => {
+                loader.style.opacity = "1";
+            }, 10); 
+            
+           
+            setTimeout(() => {
+         
+                window.location.href = "login.html";
+            }, 1800); 
+        });
+    </script>
 </body>
 </html>
