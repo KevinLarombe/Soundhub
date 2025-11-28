@@ -106,6 +106,15 @@
 </head>
 <body>
 
+    <div id="loader">
+        <div class="spinner"></div>
+        Diving into the soundscape...
+    </div>
+
+    <div class="logo-container">
+        <div class="logo" id="welcomeBtn">ZCVKJ Soundhub</div>
+        <div class="slogan">The rhythm starts now.</div>
+    </div>
 
     <script>
         const welcomeBtn = document.getElementById("welcomeBtn");
@@ -117,5 +126,16 @@
             loader.style.display = "flex";
 
            
-         g
+            setTimeout(() => {
+                loader.style.opacity = "1";
+            }, 10); 
+            
+           
+            setTimeout(() => {
+         
+                window.location.href = "homepage.html";
+            }, 1800); 
+        });
+    </script>
+</body>
 </html>
