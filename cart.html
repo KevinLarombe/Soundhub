@@ -1,62 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Cart - ZCVKJ Soundhub</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZCVKJ Soundhub - Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --dark-purple: #1A0033;
+    --medium-purple: #4D1A7F;
+    --light-purple: #A66CFF;
+    --accent-glow: #F3E8FF;
+    --text-color: #E0E0E0;
+    --success-green: #38c172;
+    --shadow: 0 4px 12px rgba(0,0,0,0.2);
+    --radius: 8px;
+}
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family:'Poppins',sans-serif; background-color:#0d001a; color:var(--text-color); line-height:1.6; padding:20px 5%; }
+h1 { text-align:center; font-size:2rem; margin-bottom:30px; color:var(--light-purple); }
+table { width:100%; border-collapse: collapse; margin-bottom: 20px; }
+th, td { padding:12px 10px; text-align:center; border-radius: var(--radius); }
+th { background-color: var(--medium-purple); color: var(--accent-glow); }
+td { background-color: var(--dark-purple); }
+.remove-item { cursor:pointer; color: var(--light-purple); font-weight:600; }
+.remove-item:hover { color: var(--accent-glow); }
+.quantity-controls { display:flex; justify-content:center; align-items:center; gap:5px; }
+.quantity-controls button { width:25px; height:25px; border-radius:50%; border:none; cursor:pointer; background-color: var(--medium-purple); color: var(--accent-glow); font-weight:bold; transition:0.2s; }
+.quantity-controls button:hover { background-color: var(--light-purple); color: var(--dark-purple); }
+.total { text-align:right; font-size:1.2rem; font-weight:700; margin-top:10px; }
+#empty-msg { text-align:center; font-size:1.2rem; margin-top:40px; }
+a { color: var(--light-purple); text-decoration:none; font-weight:600; }
+a:hover { color: var(--accent-glow); }
+.back-home { display:block; text-align:center; margin-top:20px; }
+.clear-cart-btn {
+    display:block;
+    margin:10px auto;
+    padding:10px 20px;
+    background-color: var(--light-purple);
+    color: var(--dark-purple);
+    font-weight:700;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.clear-cart-btn:hover { background-color: var(--accent-glow); }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Your Cart</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="checkout.html">Checkout</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section>
-    <div id="cart-items"></div>
-    <p id="cart-total">Total: $0.00</p>
-    <button id="checkout-btn">Go to Checkout</button>
-  </section>
+<h1>Your Cart</h1>
 
-  <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartItemsDiv = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
+<table id="cart-table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Cart items will be injected here -->
+    </tbody>
+</table>
 
-    function renderCart() {
-      cartItemsDiv.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement('div');
-        div.classList.add('cart-item');
-        div.innerHTML = `${item.name} - $${item.price.toFixed(2)} 
-                         <span class="remove-item" data-index="${index}">🗑️</span>`;
-        cartItemsDiv.appendChild(div);
-      });
-      cartTotal.textContent = 'Total: $' + total.toFixed(2);
+<p class="total" id="cart-total">Total: $0.00</p>
+<p id="empty-msg" style="display:none;">Your cart is empty.</p>
+
+<button class="clear-cart-btn" id="clear-cart">Clear Cart</button>
+
+<a href="homepage.html" class="back-home">← Back to Home</a>
+
+<script>
+// Load cart from localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
+
+function renderCart() {
+    const tbody = document.querySelector('#cart-table tbody');
+    const totalElem = document.getElementById('cart-total');
+    const emptyMsg = document.getElementById('empty-msg');
+    tbody.innerHTML = '';
+
+    if(cart.length === 0){
+        document.getElementById('cart-table').style.display = 'none';
+        totalElem.style.display = 'none';
+        emptyMsg.style.display = 'block';
+        document.getElementById('clear-cart').style.display = 'none';
+        return;
+    } else {
+        document.getElementById('cart-table').style.display = 'table';
+        totalElem.style.display = 'block';
+        emptyMsg.style.display = 'none';
+        document.getElementById('clear-cart').style.display = 'block';
     }
 
-    cartItemsDiv.addEventListener('click', e => {
-      if (e.target.classList.contains('remove-item')) {
-        const index = e.target.dataset.index;
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCart();
-      }
+    let totalPrice = 0;
+
+    cart.forEach((item, index) => {
+        const row = document.createElement('tr');
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td>
+                <div class="quantity-controls">
+                    <button class="decrease" data-index="${index}">−</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="increase" data-index="${index}">+</button>
+                </div>
+            </td>
+            <td>$${itemTotal.toFixed(2)}</td>
+            <td><span class="remove-item" data-index="${index}">Remove</span></td>
+        `;
+        tbody.appendChild(row);
     });
 
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      location.href = 'checkout.html';
+    totalElem.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+    // Remove item
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const idx = parseInt(btn.dataset.index);
+            cart.splice(idx,1);
+            saveCart();
+            renderCart();
+        });
     });
 
+    // Quantity controls
+    document.querySelectorAll('.increase').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const idx = parseInt(btn.dataset.index);
+            cart[idx].quantity += 1;
+            saveCart();
+            renderCart();
+        });
+    });
+
+    document.querySelectorAll('.decrease').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const idx = parseInt(btn.dataset.index);
+            if(cart[idx].quantity > 1) {
+                cart[idx].quantity -= 1;
+                saveCart();
+                renderCart();
+            }
+        });
+    });
+}
+
+// Clear entire cart
+document.getElementById('clear-cart').addEventListener('click', () => {
+    cart = [];
+    saveCart();
     renderCart();
-  </script>
+});
+
+renderCart();
+</script>
+
 </body>
 </html>
